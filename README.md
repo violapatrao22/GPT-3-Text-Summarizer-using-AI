@@ -1,7 +1,4 @@
-# GPT-3 Text Summarizer using AI
-
 ## Overview
-
 GPT-3 Text Summarizer using AI is an AI-powered tool that leverages OpenAI's GPT-3 model to summarize text. The project includes web scraping, text preprocessing, TF-IDF scoring, and a Shiny app interface for users to upload text files and receive summarized outputs.
 
 ## Features
@@ -12,52 +9,35 @@ GPT-3 Text Summarizer using AI is an AI-powered tool that leverages OpenAI's GPT
 5. Word Frequency Analysis: Visualizes the most frequent words in the text data.
 
 ## Installation
-
 ### Prerequisites
 1. R (version 4.0 or higher)
 2. RStudio (optional but recommended)
 3. An OpenAI API key (for GPT-3 access)
 
 ### Required R Packages
-Install the following R packages if you haven't already:
-```r
-install.packages(c("tidytext", "text2vec", "dplyr", "ggplot2", "tm", "tokenizers", "stringr", "rvest", "httr", "jsonlite", "shiny", "reticulate"))
+Install the following R packages if you haven't already: tidytext, text2vec, dplyr, ggplot2, tm, tokenizers, stringr, rvest, httr, jsonlite, shiny, reticulate.
 
 ### Clone the Repository
-bash
-Copy code
-git clone https://github.com/violapatrao22/GPT-3-Text-Summarizer-using-AI.git
-cd GPT-3-Text-Summarizer-using-AI
-Usage
-Running the Shiny App
-To start the Shiny app, run the following command in your R environment:
+To clone the repository, use the following commands: git clone <repository-url> and cd <repository-directory>.
 
-r
-Copy code
-shiny::runApp()
+## Usage
+### Running the Shiny App
+To start the Shiny app, run the command to launch it in your R environment.
+
 This will launch the app in your web browser where you can upload text files and generate summaries.
 
-Configuration
-Replace "your_openai_api_key_here" in the R script with your actual OpenAI API key:
+### Configuration
+Replace your_openai_api_key_here in the R script with your actual OpenAI API key.
 
-r
-Copy code
-openai_api_key <- "your_openai_api_key_here"
-Project Structure
-ui.R: Defines the user interface for the Shiny app.
-server.R: Handles the server-side logic for processing and summarizing the text.
-clean_file.R: A utility function for cleaning text files before processing.
-gpt3_summarizer.R: The main script for text summarization using GPT-3.
-Example
-Input
-Upload a .txt file with the following content:
+## Project Structure
+1. ui.R: Defines the user interface for the Shiny app.
+2. server.R: Handles the server-side logic for processing and summarizing the text.
+3. clean_file.R: A utility function for cleaning text files before processing.
+4. gpt3_summarizer.R: The main script for text summarization using GPT-3.
 
-csharp
-Copy code
-GPT-3, or Generative Pre-trained Transformer 3, is a state-of-the-art language model developed by OpenAI...
-Output
-The app will generate a summary like:
+## Example
+### Input
+Upload a .txt file with content about GPT-3 or any other text data.
 
-csharp
-Copy code
-GPT-3 is a state-of-the-art language model developed by OpenAI...
+### Output
+The app will generate a summary based on the input text.
