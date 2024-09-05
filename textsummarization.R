@@ -27,7 +27,6 @@ library(shiny)
 library(reticulate)
 
 # Step 1: Web Scraping and Cleaning
-# ---------------------------------
 url <- "https://jamesclear.com/kasparov-confidence"
 webpage <- read_html(url)
 text_data <- webpage %>% html_nodes("p") %>% html_text()
@@ -39,7 +38,6 @@ text_data_clean <- gsub("\n", " ", text_data)  # Replace newlines with spaces
 text_data_df <- data.frame(text = text_data_clean, stringsAsFactors = FALSE)
 
 # Step 2: Text Preprocessing
-# --------------------------
 # Split text into sentences
 text_sentences <- unlist(strsplit(text_data_clean, "\\.\\s+"))
 
@@ -53,7 +51,6 @@ tidy_text <- tidy_text %>%
   anti_join(stop_words, by = "word")
 
 # Step 3: Term Frequency and TF-IDF
-# ---------------------------------
 # Create a text corpus and a document-term matrix
 corpus <- Corpus(VectorSource(text_sentences))
 dtm <- DocumentTermMatrix(corpus)
@@ -65,7 +62,6 @@ dtm_tfidf <- weightTfIdf(dtm)
 dtm_matrix <- as.matrix(dtm_tfidf)
 
 # Step 4: Sentence Scoring and Ranking
-# ------------------------------------
 # Score sentences based on the TF-IDF matrix
 sentence_scores <- rowSums(dtm_matrix)
 
@@ -77,7 +73,6 @@ summary_sentences <- text_sentences[ranked_sentences[1:5]]
 summary <- paste(summary_sentences, collapse = " ")
 
 # Step 5: Summarization with GPT-3
-# --------------------------------
 # Define a function to call the OpenAI API for summarization
 summarize_text <- function(text) {
   openai_api_key <- "your_openai_api_key_here"  # Replace with your actual API key
@@ -102,7 +97,6 @@ summarize_text <- function(text) {
 gpt3_summary <- summarize_text(text_data_clean)
 
 # Step 6: Shiny App Interface
-# ---------------------------
 # Define the UI for the Shiny app
 ui <- fluidPage(
   titlePanel("Text Summarization using GPT-3"),
@@ -153,7 +147,6 @@ server <- function(input, output) {
 shinyApp(ui = ui, server = server)
 
 # Step 7: Text Analytics - ROUGE Score Calculation
-# ------------------------------------------------
 # Calculate ROUGE-1 (unigram) score
 generated_summary <- "The cat sat on the mat."
 reference_summary <- "A cat is sitting on a mat."
@@ -208,7 +201,6 @@ print(paste("ROUGE-L Precision: ", rouge_l_precision))
 print(paste("ROUGE-L F1 Score: ", rouge_l_f1))
 
 # Step 8: Word Frequency Analysis
-# -------------------------------
 # Calculate word frequencies
 word_freq <- colSums(dtm_matrix)
 word_freq_df <- data.frame(word = names(word_freq), freq = word_freq)
